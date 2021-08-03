@@ -1,0 +1,76 @@
+[*]
+[*] GTKWave Analyzer v3.3.110 (w)1999-2020 BSI
+[*] Tue Aug  3 18:21:42 2021
+[*]
+[dumpfile] "../testbench/vcd/main.vcd"
+[dumpfile_mtime] "Tue Aug  3 18:21:19 2021"
+[dumpfile_size] 27889
+[timestart] 0
+[size] 1859 1007
+[pos] -1 -1
+*-16.199999 289100 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] tb_Main.
+[treeopen] tb_Main.cpu.
+[sst_width] 318
+[signals_width] 376
+[sst_expanded] 1
+[sst_vpaned_height] 306
+@200
+-REGISTERS
+@24
+tb_Main.cpu.R1[4:0]
+tb_Main.cpu.R2[4:0]
+@2024
+^1 ./rom_instruction_enums.gtkw
+tb_Main.cpu.R1_DATA[31:0]
+@24
+tb_Main.cpu.R1_DATA_EXECUTE_3[31:0]
+tb_Main.cpu.R2_DATA[31:0]
+tb_Main.cpu.R2_DATA_EXECUTE_3[31:0]
+@200
+-PC
+@28
+[color] 3
+tb_Main.cpu.CLK
+@420
+tb_Main.cpu.PC[9:0]
+tb_Main.cpu.PC_DECODE_2[9:0]
+tb_Main.cpu.PC_EXECUTE_3[9:0]
+@200
+-
+-INSTRUCTION
+@2022
+^1 ./rom_instruction_enums.gtkw
+tb_Main.cpu.INSTRUCTION[31:0]
+^1 ./rom_instruction_enums.gtkw
+tb_Main.cpu.INSTRUCTION_DECODE_2[31:0]
+^1 ./rom_instruction_enums.gtkw
+tb_Main.cpu.INSTRUCTION_EXECUTE_3[31:0]
+^1 ./rom_instruction_enums.gtkw
+tb_Main.cpu.INSTRUCTION_MEMORY_4[31:0]
+^1 ./rom_instruction_enums.gtkw
+tb_Main.cpu.INSTRUCTION_WRITEBACK_5[31:0]
+@200
+-
+-ALU
+@24
+tb_Main.cpu.ALU_OP[3:0]
+tb_Main.cpu.ALU_OUT[31:0]
+tb_Main.cpu.ALU_OUT_MEMORY_4[31:0]
+@200
+-
+-GPIO
+@24
+tb_Main.cpu.GPIO[31:0]
+@200
+-
+-PIPELINE HAZARDS
+@28
+tb_Main.cpu.LOAD_STALL
+tb_Main.cpu.CONTROL_HAZARD_STALL
+tb_Main.cpu.DATA_DEPENDENCY_HAZARD_R1
+tb_Main.cpu.DATA_DEPENDENCY_HAZARD_R2
+tb_Main.cpu.DATA_DEPENDENCY_HAZARD_R1_WRITEBACK
+tb_Main.cpu.DATA_DEPENDENCY_HAZARD_R2_WRITEBACK
+[pattern_trace] 1
+[pattern_trace] 0
