@@ -3,7 +3,7 @@
 `include "ROM.v"
 `timescale 1ns / 100ps 
 
-module tb_Main(
+module Main(
     input CLK,
     output [31:0] GPIO
 );
@@ -41,5 +41,13 @@ module tb_Main(
 
         .DATA_OUT(RAM_READ_DATA)    
     );
+    
+//    integer i = 0;
+//    initial begin
+//        for(i=0; i<20; i = i + 1) begin
+//            #20 CLK = 1;
+//            #20 CLK = 0;
+//        end
+//    end
     
 endmodule

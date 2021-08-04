@@ -9,9 +9,10 @@ module RegFile(
     output [31:0]R2_DATA
 );
     reg [31:0] REGISTERS[31:0]; // 64 Bit length, 32 Registers
-
+    
+    integer i = 0;
     initial begin
-        for (integer i = 0; i < 32 ; i = i + 1) begin
+        for (i = 0; i < 32 ; i = i + 1) begin
             REGISTERS[i] <= 0;
         end
     end

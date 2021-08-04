@@ -3,7 +3,7 @@ module Encoder_4 (
     output reg [1:0] out
   );
   initial begin
-    out = 0;
+    out <= 0;
   end
 
   always @(in) begin
@@ -13,7 +13,6 @@ module Encoder_4 (
       4'b001x : out = 1;
       4'b0001 : out = 0;
       4'b0000 : out = 0;
-      default: out = 0;
     endcase
   end
 endmodule
@@ -23,7 +22,7 @@ module Encoder_8 (
     output reg [2:0] out
   );
   initial begin
-    out = 0;
+    out <= 0;
   end
   
   always @(in) begin
@@ -37,7 +36,6 @@ module Encoder_8 (
       8'b0000001x : out = 1;
       8'b00000001 : out = 0;
       8'b00000000 : out = 0;
-      default: out = 0;
     endcase
   end
   
@@ -48,7 +46,7 @@ module Encoder_16 (
     output reg [3:0] out
   );
   initial begin
-    out = 0;
+    out <= 0;
   end
   
   always @(in) begin
@@ -70,7 +68,6 @@ module Encoder_16 (
       16'b000000000000001x : out = 1;
       16'b0000000000000001 : out = 0;
       16'b0000000000000000 : out = 0;
-      default: out = 0;
     endcase
   end
   

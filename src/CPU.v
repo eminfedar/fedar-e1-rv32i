@@ -499,20 +499,4 @@ module CPU (
             2: REG_WRITE_DATA_WRITEBACK_5 <= PC_MEMORY_4 + 4;
         endcase
     end
-
-
-
-
-
-
-    // GTK WAVE trick to show Arrays. NOT NECESSARY:
-    generate
-        genvar idx;
-        for(idx = 0; idx < 4; idx = idx+1) begin: PIPELINE
-            wire [4:0] R1 = R1_PIPELINE[idx];
-            wire [4:0] R2 = R2_PIPELINE[idx];
-            wire [4:0] RD = RD_PIPELINE[idx];
-            wire [2:0] TYPE = TYPE_PIPELINE[idx];
-        end
-    endgenerate
 endmodule

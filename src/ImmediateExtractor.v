@@ -3,6 +3,9 @@ module ImmediateExtractor(
     input [2:0] SELECTION,
     output reg signed [31:0] VALUE
 );
+    initial begin
+        VALUE <= 0;
+    end
     wire [11:0] IMM_11_0    = INSTRUCTION[31:20];
     wire [19:0] IMM_31_12   = INSTRUCTION[31:12];
     wire [4:0] IMM_4_0      = INSTRUCTION[11:7];
@@ -30,7 +33,6 @@ module ImmediateExtractor(
             3: VALUE = Imm_S;
             4: VALUE = Imm_B;
             5: VALUE = Imm_UJ;
-            default : VALUE = 0;
         endcase
     end
 endmodule

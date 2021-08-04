@@ -6,13 +6,7 @@ module RAM(
     
     output [31:0] DATA_OUT
 );
-    reg [63:0] memory [1023:0];
-
-    initial begin
-        for(integer i=0; i<1024; i=i+1) begin
-            memory[i] <= 0;
-        end
-    end
+    reg [31:0] memory [1023:0];
 
     assign DATA_OUT = memory[ADDRESS];
 
