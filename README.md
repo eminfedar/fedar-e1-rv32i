@@ -2,7 +2,9 @@
 
 Fedar E1 is a 5-Stage Pipelined (Fetch|Decode|Execute|Memory|Writeback) RV32I RISC-V Core written fully in Verilog.
 
-- It has 32 GPIO pins.
+- RAM: 1KB *(can be changed)*
+- ROM: 1KB *(can be changed)*
+- 32 GPIO Pins
 
 ---
 
@@ -20,5 +22,3 @@ Fedar E1 is a 5-Stage Pipelined (Fetch|Decode|Execute|Memory|Writeback) RV32I RI
 | -- Register as Latch        |  520 |     0 |     41600 |  1.25 |
 | F7 Muxes                   |  320 |     0 |     16300 |  1.96 |
 | F8 Muxes                   |  160 |     0 |      8150 |  1.96 |
-
-Will be improved.
