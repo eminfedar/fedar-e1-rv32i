@@ -2,32 +2,23 @@
 
 Fedar E1 is a 5-Stage Pipelined (Fetch|Decode|Execute|Memory|Writeback) RV32I RISC-V Core written fully in Verilog.
 
-It has 32 GPIO pins.
+- It has 32 GPIO pins.
 
-![Simulated GTKWave output of the CPU](https://raw.githubusercontent.com/eminfedar/fedar-f1-rv64im/main/gtkwave-image.png)
+---
 
-## How to compile?
+**Artix-A7 Synthesize Report:**
 
-1. Open a terminal in `testbench` folder.
-2. Run: `run_tests.sh`.
-  - The script automatically compile and create files under the `testbench/output/` folder. 
-  - And will create `.vcd` files under the `testbench/vcd` folder.
-3. Done!
+|          Site Type         | Used | Fixed | Available | Util% |
+| --- | --- | --- | --- | --- |
+| **Slice LUTs\***                | 1070 |     0 |     20800 |  5.14 |
+| -- LUT as Logic             |  558 |     0 |     20800 |  2.68 |
+| -- LUT as Memory            |  512 |     0 |      9600 |  5.33 |
+| ---- LUT as Distributed RAM |  512 |     0 |           |       |
+| ---- LUT as Shift Register  |    0 |     0 |           |       |
+| **Slice Registers**            |  806 |     0 |     41600 |  1.94 |
+| -- Register as Flip Flop    |  286 |     0 |     41600 |  0.69 |
+| -- Register as Latch        |  520 |     0 |     41600 |  1.25 |
+| F7 Muxes                   |  320 |     0 |     16300 |  1.96 |
+| F8 Muxes                   |  160 |     0 |      8150 |  1.96 |
 
-Compilation requires `iverilog` verilog compiler.
-
-You can install iverilog on Debian based distros (like Pardus GNU/Linux or Ubuntu) with this command:
-```
-sudo apt install iverilog
-```
-
-> If you don't want to compile it again, precompiled `.vcd` files are available under the `testbench/vcd`.
-
-## How to open .vcd files?
-- Use [GTKWave](https://github.com/gtkwave/gtkwave).
-
-You can install GTKWave on Debian based distros (like Pardus GNU/Linux or Ubuntu) with this command:
-```
-sudo apt install gtkwave
-```
-Then double click the files or open with terminal command: `gtkwave file.vcd`.
+Will be improved.
