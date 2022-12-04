@@ -12,6 +12,8 @@ module tb_RAM;
     RAM ram(ADDRESS, DATA_IN, WRITE_ENABLE, CLK, DATA_OUT);
 
     initial begin
+        #20;
+        
         // Write #1
         ADDRESS = 1;
         DATA_IN = 55;

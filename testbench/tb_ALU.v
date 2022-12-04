@@ -12,6 +12,8 @@ module tb_ALU;
     ALU alu(a, b, op, result, isEqual);
 
     initial begin
+        #20;
+        
         // add
         a = 5;          b = 5;      op = 0; #20;
         // sub

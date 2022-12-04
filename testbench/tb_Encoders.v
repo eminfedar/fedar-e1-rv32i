@@ -13,6 +13,8 @@ module tb_Encoders;
     Encoder_4 enc4(in[3:0], out2);
 
     initial begin
+        #20;
+        
         in = 16'b0000000000000000; #20;
         in = 16'b0000000000000001; #20;
         in = 16'b0000000000000010; #20;

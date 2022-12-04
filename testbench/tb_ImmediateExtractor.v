@@ -9,6 +9,8 @@ module tb_ImmediateExtractor;
     ImmediateExtractor ie(INSTRUCTION, SELECTION, VALUE);
 
     initial begin
+        #20;
+        
         INSTRUCTION = 32'h00A00613; // addi x12 x0 10  // Expects: 10
         SELECTION = 1; // I Type
         #20;
@@ -27,6 +29,10 @@ module tb_ImmediateExtractor;
 
         INSTRUCTION = 32'h4000006F; // jal x0 1024 // Expects: 1024
         SELECTION = 5; // UJ Type
+        #20;
+
+        INSTRUCTION = 32'h00A00613; // addi x12 x0 10  // Expects: 10
+        SELECTION = 1; // I Type
         #20;
     end
 
