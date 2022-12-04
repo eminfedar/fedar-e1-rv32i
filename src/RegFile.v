@@ -8,7 +8,7 @@ module RegFile(
     output [31:0]R1_DATA,
     output [31:0]R2_DATA
 );
-    reg [31:0] REGISTERS[31:0]; // 64 Bit length, 32 Registers
+    reg [31:0] REGISTERS[31:0]; // 32 Bit length, 32 Registers
     
     integer i = 0;
     initial begin

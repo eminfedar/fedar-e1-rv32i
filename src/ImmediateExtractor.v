@@ -6,6 +6,7 @@ module ImmediateExtractor(
     initial begin
         VALUE <= 0;
     end
+    
     wire [11:0] IMM_11_0    = INSTRUCTION[31:20];
     wire [19:0] IMM_31_12   = INSTRUCTION[31:12];
     wire [4:0] IMM_4_0      = INSTRUCTION[11:7];
@@ -26,6 +27,7 @@ module ImmediateExtractor(
     wire signed [31:0] Imm_S  = { {32{IMM_11_5[6]}}, IMM_11_5, IMM_4_0 };
     wire signed [31:0] Imm_UJ = { {32{IMM_20}}, IMM_19_12, IMM_11_J, IMM_10_1, 1'b0 };
 
+    // MUX to select desired Immediate Value from the value of selection pins.
     always @(*) begin
         case (SELECTION)
             1: VALUE = Imm_I;

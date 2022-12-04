@@ -45,8 +45,7 @@ module Main(
 //    integer i = 0;
 //    initial begin
 //        for(i=0; i<20; i = i + 1) begin
-//            #20 CLK = 1;
-//            #20 CLK = 0;
+//            #20 CLK = ~CLK;
 //        end
 //    end
     

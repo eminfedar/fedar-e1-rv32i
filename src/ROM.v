@@ -2,7 +2,7 @@ module ROM(
     input [9:0] ADDRESS,    
     output [31:0] DATA
 );
-    reg [31:0] memory [0:1023]; // 10-bit address. 32-bit cell size.
+    reg [31:0] memory [1023:0]; // 10-bit address. 32-bit cell size.
 
     assign DATA = memory[ADDRESS];
 
