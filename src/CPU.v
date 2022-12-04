@@ -16,27 +16,27 @@ module CPU (
 );
     // CONSTANTS:
     // -- OPCODE DEFINES:
-    integer OP_R_TYPE           = 7'h33;
-    integer OP_I_TYPE_LOAD      = 7'h03;
-    integer OP_I_TYPE_OTHER     = 7'h13;
-    integer OP_I_TYPE_JUMP      = 7'h6F;
-    integer OP_S_TYPE           = 7'h23;
-    integer OP_B_TYPE           = 7'h63;
-    integer OP_U_TYPE_LOAD      = 7'h37;
-    integer OP_U_TYPE_JUMP      = 7'h67;
-    integer OP_U_TYPE_AUIPC     = 7'h17;
+    `define OP_R_TYPE           7'h33
+    `define OP_I_TYPE_LOAD      7'h03
+    `define OP_I_TYPE_OTHER     7'h13
+    `define OP_I_TYPE_JUMP      7'h6F
+    `define OP_S_TYPE           7'h23
+    `define OP_B_TYPE           7'h63
+    `define OP_U_TYPE_LOAD      7'h37
+    `define OP_U_TYPE_JUMP      7'h67
+    `define OP_U_TYPE_AUIPC     7'h17
     // -- PIPELINE HAZARD INSTRUCTION TYPE DEFINES:
-    integer TYPE_REGISTER       = 0;
-    integer TYPE_LOAD           = 1;
-    integer TYPE_STORE          = 2;
-    integer TYPE_IMMEDIATE      = 3;
-    integer TYPE_UPPERIMMEDIATE = 4;
-    integer TYPE_BRANCH         = 5;
+    `define TYPE_REGISTER       0
+    `define TYPE_LOAD           1
+    `define TYPE_STORE          2
+    `define TYPE_IMMEDIATE      3
+    `define TYPE_UPPERIMMEDIATE 4
+    `define TYPE_BRANCH         5
     // -- PIPELINE STAGES
-    integer DECODE      = 0;
-    integer EXECUTE     = 1;
-    integer MEMORY      = 2;
-    integer WRITEBACK   = 3;
+    `define DECODE      0
+    `define EXECUTE     1
+    `define MEMORY      2
+    `define WRITEBACK   3
 
 
     // WIRE DEFINITIONS:
@@ -47,16 +47,16 @@ module CPU (
     wire [4:0] R2       = INSTRUCTION_EXECUTE_3[24:20];
     wire [6:0] FUNCT7   = INSTRUCTION_EXECUTE_3[31:25];
 
-    wire R_TYPE         = OPCODE == OP_R_TYPE;
-    wire I_TYPE_LOAD    = OPCODE == OP_I_TYPE_LOAD;
-    wire I_TYPE_OTHER   = OPCODE == OP_I_TYPE_OTHER;
-    wire I_TYPE_JUMP    = OPCODE == OP_I_TYPE_JUMP;
+    wire R_TYPE         = OPCODE == `OP_R_TYPE;
+    wire I_TYPE_LOAD    = OPCODE == `OP_I_TYPE_LOAD;
+    wire I_TYPE_OTHER   = OPCODE == `OP_I_TYPE_OTHER;
+    wire I_TYPE_JUMP    = OPCODE == `OP_I_TYPE_JUMP;
     wire I_TYPE         = I_TYPE_JUMP || I_TYPE_LOAD || I_TYPE_OTHER;
-    wire S_TYPE         = OPCODE == OP_S_TYPE;
-    wire B_TYPE         = OPCODE == OP_B_TYPE;
-    wire U_TYPE_LOAD    = OPCODE == OP_U_TYPE_LOAD;
-    wire U_TYPE_JUMP    = OPCODE == OP_U_TYPE_JUMP;
-    wire U_TYPE_AUIPC   = OPCODE == OP_U_TYPE_AUIPC;
+    wire S_TYPE         = OPCODE == `OP_S_TYPE;
+    wire B_TYPE         = OPCODE == `OP_B_TYPE;
+    wire U_TYPE_LOAD    = OPCODE == `OP_U_TYPE_LOAD;
+    wire U_TYPE_JUMP    = OPCODE == `OP_U_TYPE_JUMP;
+    wire U_TYPE_AUIPC   = OPCODE == `OP_U_TYPE_AUIPC;
     wire U_TYPE         = U_TYPE_JUMP || U_TYPE_LOAD || U_TYPE_AUIPC;
 
     // -- Register-Register Types (R-Type)    
@@ -85,9 +85,9 @@ module CPU (
     wire I_ori      = I_TYPE_OTHER && FUNCT3 == 3'h6;
     wire I_andi     = I_TYPE_OTHER && FUNCT3 == 3'h7;
     // ---- Load
-    wire I_lb       = INSTRUCTION_MEMORY_4[6:0] == OP_I_TYPE_LOAD && INSTRUCTION_MEMORY_4[14:12] == 3'h0;
-    wire I_lh       = INSTRUCTION_MEMORY_4[6:0] == OP_I_TYPE_LOAD && INSTRUCTION_MEMORY_4[14:12] == 3'h1;
-    wire I_lw       = INSTRUCTION_MEMORY_4[6:0] == OP_I_TYPE_LOAD && INSTRUCTION_MEMORY_4[14:12] == 3'h2;
+    wire I_lb       = INSTRUCTION_MEMORY_4[6:0] == `OP_I_TYPE_LOAD && INSTRUCTION_MEMORY_4[14:12] == 3'h0;
+    wire I_lh       = INSTRUCTION_MEMORY_4[6:0] == `OP_I_TYPE_LOAD && INSTRUCTION_MEMORY_4[14:12] == 3'h1;
+    wire I_lw       = INSTRUCTION_MEMORY_4[6:0] == `OP_I_TYPE_LOAD && INSTRUCTION_MEMORY_4[14:12] == 3'h2;
     // ---- Jump
     wire I_jalr     = I_TYPE_JUMP;
 
@@ -99,9 +99,9 @@ module CPU (
 
 
     // -- Store Types (S-Type)
-    wire S_sb       = INSTRUCTION_MEMORY_4[6:0] == OP_S_TYPE && INSTRUCTION_MEMORY_4[14:12] == 3'h0;
-    wire S_sh       = INSTRUCTION_MEMORY_4[6:0] == OP_S_TYPE && INSTRUCTION_MEMORY_4[14:12] == 3'h1;
-    wire S_sw       = INSTRUCTION_MEMORY_4[6:0] == OP_S_TYPE && INSTRUCTION_MEMORY_4[14:12] == 3'h2;
+    wire S_sb       = INSTRUCTION_MEMORY_4[6:0] == `OP_S_TYPE && INSTRUCTION_MEMORY_4[14:12] == 3'h0;
+    wire S_sh       = INSTRUCTION_MEMORY_4[6:0] == `OP_S_TYPE && INSTRUCTION_MEMORY_4[14:12] == 3'h1;
+    wire S_sw       = INSTRUCTION_MEMORY_4[6:0] == `OP_S_TYPE && INSTRUCTION_MEMORY_4[14:12] == 3'h2;
 
 
     // -- Branch Types (B-Type)
@@ -136,7 +136,7 @@ module CPU (
                         ;
     
     // -- RAM Read & Write Enable Pins
-    assign RAM_WRITE_ENABLE     = INSTRUCTION_MEMORY_4[6:0] == OP_S_TYPE;
+    assign RAM_WRITE_ENABLE     = INSTRUCTION_MEMORY_4[6:0] == `OP_S_TYPE;
     assign RAM_ADDR             = ALU_OUT_MEMORY_4[9:0];
 
 
@@ -149,50 +149,50 @@ module CPU (
 
     // If R1 depends on the previous RD (or R2 if STORE)
     wire DATA_DEPENDENCY_HAZARD_R1 =
-                        R1_PIPELINE[EXECUTE] != 0
-                    &&  TYPE_PIPELINE[EXECUTE] != TYPE_UPPERIMMEDIATE
-                    &&  R1_PIPELINE[EXECUTE] == RD_PIPELINE[MEMORY];
+                        R1_PIPELINE[`EXECUTE] != 0
+                    &&  TYPE_PIPELINE[`EXECUTE] !=  `TYPE_UPPERIMMEDIATE
+                    &&  R1_PIPELINE[`EXECUTE] == RD_PIPELINE[`MEMORY];
     // If R2 depends on the previous RD (or R2 if STORE)
     wire DATA_DEPENDENCY_HAZARD_R2 =
-                        R2_PIPELINE[EXECUTE] != 0
-                    &&  TYPE_PIPELINE[EXECUTE] != TYPE_UPPERIMMEDIATE
-                    &&  TYPE_PIPELINE[EXECUTE] != TYPE_IMMEDIATE
-                    &&  R2_PIPELINE[EXECUTE] == RD_PIPELINE[MEMORY];
+                        R2_PIPELINE[`EXECUTE] != 0
+                    &&  TYPE_PIPELINE[`EXECUTE] !=  `TYPE_UPPERIMMEDIATE
+                    &&  TYPE_PIPELINE[`EXECUTE] !=  `TYPE_IMMEDIATE
+                    &&  R2_PIPELINE[`EXECUTE] == RD_PIPELINE[`MEMORY];
     
     // If R1 depends on the 5th stage RD
     wire DATA_DEPENDENCY_HAZARD_R1_WRITEBACK =
-                        R1_PIPELINE[EXECUTE] != 0
-                    &&  TYPE_PIPELINE[EXECUTE] != TYPE_UPPERIMMEDIATE
-                    &&  R1_PIPELINE[EXECUTE] == RD_PIPELINE[WRITEBACK];
+                        R1_PIPELINE[`EXECUTE] != 0
+                    &&  TYPE_PIPELINE[`EXECUTE] !=  `TYPE_UPPERIMMEDIATE
+                    &&  R1_PIPELINE[`EXECUTE] == RD_PIPELINE[`WRITEBACK];
     // If R2 depends on the 5th stage RD
     wire DATA_DEPENDENCY_HAZARD_R2_WRITEBACK =
-                        R2_PIPELINE[EXECUTE] != 0
-                    &&  TYPE_PIPELINE[EXECUTE] != TYPE_UPPERIMMEDIATE
-                    &&  TYPE_PIPELINE[EXECUTE] != TYPE_IMMEDIATE
-                    &&  R2_PIPELINE[EXECUTE] == RD_PIPELINE[WRITEBACK];
+                        R2_PIPELINE[`EXECUTE] != 0
+                    &&  TYPE_PIPELINE[`EXECUTE] !=  `TYPE_UPPERIMMEDIATE
+                    &&  TYPE_PIPELINE[`EXECUTE] !=  `TYPE_IMMEDIATE
+                    &&  R2_PIPELINE[`EXECUTE] == RD_PIPELINE[`WRITEBACK];
     
 
     // If the next instruction depends on a Load instruction before, stall one clock.
     wire LOAD_STALL =
-                        TYPE_PIPELINE[EXECUTE] == TYPE_LOAD
+                        TYPE_PIPELINE[`EXECUTE] == `TYPE_LOAD
                     &&  (
                             (
-                                TYPE_PIPELINE[DECODE] != TYPE_UPPERIMMEDIATE
-                            &&  TYPE_PIPELINE[DECODE] != TYPE_IMMEDIATE
+                                TYPE_PIPELINE[`DECODE] !=  `TYPE_UPPERIMMEDIATE
+                            &&  TYPE_PIPELINE[`DECODE] !=  `TYPE_IMMEDIATE
                             &&  (
-                                    (R1_PIPELINE[DECODE] != 0 && R1_PIPELINE[DECODE] == RD_PIPELINE[EXECUTE])
-                                ||  (R2_PIPELINE[DECODE] != 0 && R2_PIPELINE[DECODE] == RD_PIPELINE[EXECUTE])
+                                    (R1_PIPELINE[`DECODE] != 0 && R1_PIPELINE[`DECODE] == RD_PIPELINE[`EXECUTE])
+                                ||  (R2_PIPELINE[`DECODE] != 0 && R2_PIPELINE[`DECODE] == RD_PIPELINE[`EXECUTE])
                                 )
                             )
                         ||  (   
-                                TYPE_PIPELINE[DECODE] == TYPE_IMMEDIATE
-                            &&  R1_PIPELINE[DECODE] != 0
-                            &&  R1_PIPELINE[DECODE] == RD_PIPELINE[EXECUTE]
+                                TYPE_PIPELINE[`DECODE] ==  `TYPE_IMMEDIATE
+                            &&  R1_PIPELINE[`DECODE] != 0
+                            &&  R1_PIPELINE[`DECODE] == RD_PIPELINE[`EXECUTE]
                             )
                         );
     
     // If there is a branch instruction, stall for 2 clocks.
-    wire CONTROL_HAZARD_STALL = INSTRUCTION_DECODE_2[6:0] == OP_B_TYPE || INSTRUCTION_EXECUTE_3[6:0] == OP_B_TYPE;
+    wire CONTROL_HAZARD_STALL = INSTRUCTION_DECODE_2[6:0] == `OP_B_TYPE || INSTRUCTION_EXECUTE_3[6:0] == `OP_B_TYPE;
     
 
 
@@ -285,14 +285,14 @@ module CPU (
     // -- RegFile
     // Decoding OPCODE for 5th stage of pipeline.
     wire [6:0] OPCODE_WRITEBACK_5 = INSTRUCTION_WRITEBACK_5[6:0];
-    wire WB_R_TYPE         = OPCODE_WRITEBACK_5 == OP_R_TYPE;
-    wire WB_I_TYPE_LOAD    = OPCODE_WRITEBACK_5 == OP_I_TYPE_LOAD;
-    wire WB_I_TYPE_OTHER   = OPCODE_WRITEBACK_5 == OP_I_TYPE_OTHER;
-    wire WB_I_TYPE_JUMP    = OPCODE_WRITEBACK_5 == OP_I_TYPE_JUMP;
+    wire WB_R_TYPE         = OPCODE_WRITEBACK_5 == `OP_R_TYPE;
+    wire WB_I_TYPE_LOAD    = OPCODE_WRITEBACK_5 == `OP_I_TYPE_LOAD;
+    wire WB_I_TYPE_OTHER   = OPCODE_WRITEBACK_5 == `OP_I_TYPE_OTHER;
+    wire WB_I_TYPE_JUMP    = OPCODE_WRITEBACK_5 == `OP_I_TYPE_JUMP;
     wire WB_I_TYPE         = WB_I_TYPE_JUMP || WB_I_TYPE_LOAD || WB_I_TYPE_OTHER;
-    wire WB_U_TYPE_LOAD    = OPCODE_WRITEBACK_5 == OP_U_TYPE_LOAD;
-    wire WB_U_TYPE_JUMP    = OPCODE_WRITEBACK_5 == OP_U_TYPE_JUMP;
-    wire WB_U_TYPE_AUIPC   = OPCODE_WRITEBACK_5 == OP_U_TYPE_AUIPC;
+    wire WB_U_TYPE_LOAD    = OPCODE_WRITEBACK_5 == `OP_U_TYPE_LOAD;
+    wire WB_U_TYPE_JUMP    = OPCODE_WRITEBACK_5 == `OP_U_TYPE_JUMP;
+    wire WB_U_TYPE_AUIPC   = OPCODE_WRITEBACK_5 == `OP_U_TYPE_AUIPC;
     wire WB_U_TYPE         = WB_U_TYPE_JUMP || WB_U_TYPE_LOAD || WB_U_TYPE_AUIPC;
 
     wire REG_WRITE_ENABLE = WB_R_TYPE || WB_I_TYPE || WB_U_TYPE;
@@ -336,30 +336,30 @@ module CPU (
 
         // PIPELINE HAZARD DATA REGISTERS
         if (CONTROL_HAZARD_STALL == 1) begin
-            R1_PIPELINE[DECODE]      <= 0;
-            R2_PIPELINE[DECODE]      <= 0;
-            RD_PIPELINE[DECODE]      <= 0;
-            TYPE_PIPELINE[DECODE]    <= TYPE_IMMEDIATE;
+            R1_PIPELINE[`DECODE]      <= 0;
+            R2_PIPELINE[`DECODE]      <= 0;
+            RD_PIPELINE[`DECODE]      <= 0;
+            TYPE_PIPELINE[`DECODE]   <= `TYPE_IMMEDIATE;
         end
         else begin
-            R1_PIPELINE[DECODE] <= INSTRUCTION[19:15];
-            R2_PIPELINE[DECODE] <= INSTRUCTION[24:20];
-            RD_PIPELINE[DECODE] <= INSTRUCTION[11:7];
+            R1_PIPELINE[`DECODE] <= INSTRUCTION[19:15];
+            R2_PIPELINE[`DECODE] <= INSTRUCTION[24:20];
+            RD_PIPELINE[`DECODE] <= INSTRUCTION[11:7];
 
-            if (INSTRUCTION[6:0] == OP_R_TYPE) // R-Type
-                TYPE_PIPELINE[DECODE] <= TYPE_REGISTER;
+            if (INSTRUCTION[6:0] == `OP_R_TYPE) // R-Type
+                TYPE_PIPELINE[`DECODE] <= `TYPE_REGISTER;
                 
-            else if (INSTRUCTION[6:0] == OP_I_TYPE_LOAD) // Load
-                TYPE_PIPELINE[DECODE] <= TYPE_LOAD;
+            else if (INSTRUCTION[6:0] == `OP_I_TYPE_LOAD) // Load
+                TYPE_PIPELINE[`DECODE] <= `TYPE_LOAD;
 
-            else if (INSTRUCTION[6:0] == OP_S_TYPE) // Store
-                TYPE_PIPELINE[DECODE] <= TYPE_STORE;
+            else if (INSTRUCTION[6:0] == `OP_S_TYPE) // Store
+                TYPE_PIPELINE[`DECODE] <=  `TYPE_STORE;
 
-            else if (INSTRUCTION[6:0] == OP_I_TYPE_OTHER || INSTRUCTION[6:0] == OP_I_TYPE_JUMP) // Immediate
-                TYPE_PIPELINE[DECODE] <= TYPE_IMMEDIATE;
+            else if (INSTRUCTION[6:0] == `OP_I_TYPE_OTHER || INSTRUCTION[6:0] == `OP_I_TYPE_JUMP) // Immediate
+                TYPE_PIPELINE[`DECODE] <=  `TYPE_IMMEDIATE;
 
-            else if (INSTRUCTION[6:0] == OP_B_TYPE[6:0]) // Branch
-                TYPE_PIPELINE[DECODE] <= TYPE_BRANCH;
+            else if (INSTRUCTION[6:0] == `OP_B_TYPE) // Branch
+                TYPE_PIPELINE[`DECODE] <=  `TYPE_BRANCH;
         end
     end
 
@@ -384,31 +384,31 @@ module CPU (
         
         
         // Pipeline Type
-        if (INSTRUCTION_DECODE_2[6:0] == OP_R_TYPE) // R-Type
-            TYPE_PIPELINE[EXECUTE] <= TYPE_REGISTER;
+        if (INSTRUCTION_DECODE_2[6:0] == `OP_R_TYPE) // R-Type
+            TYPE_PIPELINE[`EXECUTE] <= `TYPE_REGISTER;
             
-        else if (INSTRUCTION_DECODE_2[6:0] == OP_I_TYPE_LOAD) // Load
-            TYPE_PIPELINE[EXECUTE] <= TYPE_LOAD;
+        else if (INSTRUCTION_DECODE_2[6:0] == `OP_I_TYPE_LOAD) // Load
+            TYPE_PIPELINE[`EXECUTE] <= `TYPE_LOAD;
 
-        else if (INSTRUCTION_DECODE_2[6:0] == OP_S_TYPE) // Store
-            TYPE_PIPELINE[EXECUTE] <= TYPE_STORE;
+        else if (INSTRUCTION_DECODE_2[6:0] == `OP_S_TYPE) // Store
+            TYPE_PIPELINE[`EXECUTE] <=  `TYPE_STORE;
 
-        else if (INSTRUCTION_DECODE_2[6:0] == OP_I_TYPE_OTHER || INSTRUCTION_DECODE_2[6:0] == OP_I_TYPE_JUMP) // Immediate
-            TYPE_PIPELINE[EXECUTE] <= TYPE_IMMEDIATE;
+        else if (INSTRUCTION_DECODE_2[6:0] == `OP_I_TYPE_OTHER || INSTRUCTION_DECODE_2[6:0] == `OP_I_TYPE_JUMP) // Immediate
+            TYPE_PIPELINE[`EXECUTE] <=  `TYPE_IMMEDIATE;
 
-        else if (INSTRUCTION_DECODE_2[6:0] == OP_B_TYPE[6:0]) // Branch
-            TYPE_PIPELINE[EXECUTE] <= TYPE_BRANCH;
+        else if (INSTRUCTION_DECODE_2[6:0] == `OP_B_TYPE) // Branch
+            TYPE_PIPELINE[`EXECUTE] <=  `TYPE_BRANCH;
         
-        R1_PIPELINE[EXECUTE] <= INSTRUCTION_DECODE_2[19:15];
-        R2_PIPELINE[EXECUTE] <= INSTRUCTION_DECODE_2[24:20];
-        RD_PIPELINE[EXECUTE] <= INSTRUCTION_DECODE_2[11:7];
+        R1_PIPELINE[`EXECUTE] <= INSTRUCTION_DECODE_2[19:15];
+        R2_PIPELINE[`EXECUTE] <= INSTRUCTION_DECODE_2[24:20];
+        RD_PIPELINE[`EXECUTE] <= INSTRUCTION_DECODE_2[11:7];
 
         
         if (LOAD_STALL == 1) begin
-            R1_PIPELINE[EXECUTE]      <= 0;
-            R2_PIPELINE[EXECUTE]      <= 0;
-            RD_PIPELINE[EXECUTE]      <= 0;
-            TYPE_PIPELINE[EXECUTE]    <= TYPE_IMMEDIATE;
+            R1_PIPELINE[`EXECUTE]      <= 0;
+            R2_PIPELINE[`EXECUTE]      <= 0;
+            RD_PIPELINE[`EXECUTE]      <= 0;
+            TYPE_PIPELINE[`EXECUTE]    <=  `TYPE_IMMEDIATE;
         end
     end
 
@@ -427,27 +427,27 @@ module CPU (
             INSTRUCTION_EXECUTE_3 <= INSTRUCTION_DECODE_2;
         end
 
-        if (TYPE_PIPELINE[EXECUTE] == TYPE_STORE && ALU_OUT == 0)
+        if (TYPE_PIPELINE[`EXECUTE] ==  `TYPE_STORE && ALU_OUT == 0)
             GPIO <= R2_DATA; // 0th address is reserved for GPIO
 
-        if (INSTRUCTION_EXECUTE_3[6:0] == OP_R_TYPE) // R-Type
-            TYPE_PIPELINE[MEMORY] <= TYPE_REGISTER;
+        if (INSTRUCTION_EXECUTE_3[6:0] == `OP_R_TYPE) // R-Type
+            TYPE_PIPELINE[`MEMORY] <= `TYPE_REGISTER;
             
-        else if (INSTRUCTION_EXECUTE_3[6:0] == OP_I_TYPE_LOAD) // Load
-            TYPE_PIPELINE[MEMORY] <= TYPE_LOAD;
+        else if (INSTRUCTION_EXECUTE_3[6:0] == `OP_I_TYPE_LOAD) // Load
+            TYPE_PIPELINE[`MEMORY] <= `TYPE_LOAD;
 
-        else if (INSTRUCTION_EXECUTE_3[6:0] == OP_S_TYPE) // Store
-            TYPE_PIPELINE[MEMORY] <= TYPE_STORE;
+        else if (INSTRUCTION_EXECUTE_3[6:0] == `OP_S_TYPE) // Store
+            TYPE_PIPELINE[`MEMORY] <=  `TYPE_STORE;
 
-        else if (INSTRUCTION_EXECUTE_3[6:0] == OP_I_TYPE_OTHER || INSTRUCTION_EXECUTE_3[6:0] == OP_I_TYPE_JUMP) // Immediate
-            TYPE_PIPELINE[MEMORY] <= TYPE_IMMEDIATE;
+        else if (INSTRUCTION_EXECUTE_3[6:0] == `OP_I_TYPE_OTHER || INSTRUCTION_EXECUTE_3[6:0] == `OP_I_TYPE_JUMP) // Immediate
+            TYPE_PIPELINE[`MEMORY] <=  `TYPE_IMMEDIATE;
 
-        else if (INSTRUCTION_EXECUTE_3[6:0] == OP_B_TYPE[6:0]) // Branch
-            TYPE_PIPELINE[MEMORY] <= TYPE_BRANCH;
+        else if (INSTRUCTION_EXECUTE_3[6:0] == `OP_B_TYPE) // Branch
+            TYPE_PIPELINE[`MEMORY] <=  `TYPE_BRANCH;
         
-        R1_PIPELINE[MEMORY] <= INSTRUCTION_EXECUTE_3[19:15];
-        R2_PIPELINE[MEMORY] <= INSTRUCTION_EXECUTE_3[24:20];
-        RD_PIPELINE[MEMORY] <= INSTRUCTION_EXECUTE_3[11:7];
+        R1_PIPELINE[`MEMORY] <= INSTRUCTION_EXECUTE_3[19:15];
+        R2_PIPELINE[`MEMORY] <= INSTRUCTION_EXECUTE_3[24:20];
+        RD_PIPELINE[`MEMORY] <= INSTRUCTION_EXECUTE_3[11:7];
     end    
 
 
@@ -464,24 +464,24 @@ module CPU (
         RAM_WRITE_DATA <= R2_DATA;
         
 
-        if (INSTRUCTION_MEMORY_4[6:0] == OP_R_TYPE) // R-Type
-            TYPE_PIPELINE[WRITEBACK] <= TYPE_REGISTER;
+        if (INSTRUCTION_MEMORY_4[6:0] == `OP_R_TYPE) // R-Type
+            TYPE_PIPELINE[`WRITEBACK] <= `TYPE_REGISTER;
             
-        else if (INSTRUCTION_MEMORY_4[6:0] == OP_I_TYPE_LOAD) // Load
-            TYPE_PIPELINE[WRITEBACK] <= TYPE_LOAD;
+        else if (INSTRUCTION_MEMORY_4[6:0] == `OP_I_TYPE_LOAD) // Load
+            TYPE_PIPELINE[`WRITEBACK] <= `TYPE_LOAD;
 
-        else if (INSTRUCTION_MEMORY_4[6:0] == OP_S_TYPE) // Store
-            TYPE_PIPELINE[WRITEBACK] <= TYPE_STORE;
+        else if (INSTRUCTION_MEMORY_4[6:0] == `OP_S_TYPE) // Store
+            TYPE_PIPELINE[`WRITEBACK] <=  `TYPE_STORE;
 
-        else if (INSTRUCTION_MEMORY_4[6:0] == OP_I_TYPE_OTHER|| INSTRUCTION_MEMORY_4[6:0] == OP_I_TYPE_JUMP) // Immediate
-            TYPE_PIPELINE[WRITEBACK] <= TYPE_IMMEDIATE;
+        else if (INSTRUCTION_MEMORY_4[6:0] == `OP_I_TYPE_OTHER|| INSTRUCTION_MEMORY_4[6:0] == `OP_I_TYPE_JUMP) // Immediate
+            TYPE_PIPELINE[`WRITEBACK] <=  `TYPE_IMMEDIATE;
 
-        else if (INSTRUCTION_MEMORY_4[6:0] == OP_B_TYPE[6:0]) // Branch
-            TYPE_PIPELINE[WRITEBACK] <= TYPE_BRANCH;
+        else if (INSTRUCTION_MEMORY_4[6:0] == `OP_B_TYPE) // Branch
+            TYPE_PIPELINE[`WRITEBACK] <=  `TYPE_BRANCH;
         
-        R1_PIPELINE[WRITEBACK] <= INSTRUCTION_MEMORY_4[19:15];
-        R2_PIPELINE[WRITEBACK] <= INSTRUCTION_MEMORY_4[24:20];
-        RD_PIPELINE[WRITEBACK] <= INSTRUCTION_MEMORY_4[11:7];
+        R1_PIPELINE[`WRITEBACK] <= INSTRUCTION_MEMORY_4[19:15];
+        R2_PIPELINE[`WRITEBACK] <= INSTRUCTION_MEMORY_4[24:20];
+        RD_PIPELINE[`WRITEBACK] <= INSTRUCTION_MEMORY_4[11:7];
     end
 
 
