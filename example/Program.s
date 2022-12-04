@@ -1,5 +1,6 @@
 start:
     nop
+    addi x1, x0, 1
     addi x6, x0, 1
     addi x12, x0, 4
     sw x6, 0(x0)        # x6 -> R2 Data Dependency (WriteBack)
