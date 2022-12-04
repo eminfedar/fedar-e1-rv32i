@@ -7,4 +7,4 @@ riscv-none-elf-gcc -c Program.s -march=rv32i
 riscv-none-elf-objcopy -O binary Program.o Program.bin
 
 # Convert binary to readable 32bit width hexadecimal numbers
-od -t x4 Program.bin > Program.hex
+od -t x4 Program.bin -A n > Program.hex
