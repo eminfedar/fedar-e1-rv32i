@@ -1,29 +1,27 @@
 [*]
-[*] GTKWave Analyzer v3.3.110 (w)1999-2020 BSI
-[*] Tue Aug  3 18:21:42 2021
+[*] GTKWave Analyzer v3.3.111 (w)1999-2020 BSI
+[*] Sun Dec  4 11:26:42 2022
 [*]
-[dumpfile] "../testbench/vcd/main.vcd"
-[dumpfile_mtime] "Tue Aug  3 18:21:19 2021"
-[dumpfile_size] 27889
+[dumpfile] "/home/ef/Documents/Verilog/fedar-e1-rv32i/testbench/vcd/main.vcd"
+[dumpfile_mtime] "Sun Dec  4 11:24:27 2022"
+[dumpfile_size] 23965
+[savefile] "/home/ef/Documents/Verilog/fedar-e1-rv32i/gtkwave/main.gtkw"
 [timestart] 0
-[size] 1859 1007
+[size] 2560 1345
 [pos] -1 -1
-*-16.199999 289100 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-17.699999 1385000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] tb_Main.
 [treeopen] tb_Main.cpu.
 [sst_width] 318
-[signals_width] 376
+[signals_width] 577
 [sst_expanded] 1
-[sst_vpaned_height] 306
+[sst_vpaned_height] 821
 @200
 -REGISTERS
 @24
 tb_Main.cpu.R1[4:0]
 tb_Main.cpu.R2[4:0]
-@2024
-^1 ./rom_instruction_enums.gtkw
 tb_Main.cpu.R1_DATA[31:0]
-@24
 tb_Main.cpu.R1_DATA_EXECUTE_3[31:0]
 tb_Main.cpu.R2_DATA[31:0]
 tb_Main.cpu.R2_DATA_EXECUTE_3[31:0]
@@ -40,15 +38,15 @@ tb_Main.cpu.PC_EXECUTE_3[9:0]
 -
 -INSTRUCTION
 @2022
-^1 ./rom_instruction_enums.gtkw
+^1 /home/ef/Documents/Verilog/fedar-e1-rv32i/gtkwave/rom_instruction_enums.gtkw
 tb_Main.cpu.INSTRUCTION[31:0]
-^1 ./rom_instruction_enums.gtkw
+^1 /home/ef/Documents/Verilog/fedar-e1-rv32i/gtkwave/rom_instruction_enums.gtkw
 tb_Main.cpu.INSTRUCTION_DECODE_2[31:0]
-^1 ./rom_instruction_enums.gtkw
+^1 /home/ef/Documents/Verilog/fedar-e1-rv32i/gtkwave/rom_instruction_enums.gtkw
 tb_Main.cpu.INSTRUCTION_EXECUTE_3[31:0]
-^1 ./rom_instruction_enums.gtkw
+^1 /home/ef/Documents/Verilog/fedar-e1-rv32i/gtkwave/rom_instruction_enums.gtkw
 tb_Main.cpu.INSTRUCTION_MEMORY_4[31:0]
-^1 ./rom_instruction_enums.gtkw
+^1 /home/ef/Documents/Verilog/fedar-e1-rv32i/gtkwave/rom_instruction_enums.gtkw
 tb_Main.cpu.INSTRUCTION_WRITEBACK_5[31:0]
 @200
 -

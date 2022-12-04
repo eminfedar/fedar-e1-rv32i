@@ -1,5 +1,5 @@
 $date
-	Tue Aug  3 20:45:28 2021
+	Sun Dec  4 14:45:25 2022
 $end
 $version
 	Icarus Verilog
@@ -17,55 +17,60 @@ $scope module ram $end
 $var wire 10 & ADDRESS [9:0] $end
 $var wire 1 # CLK $end
 $var wire 32 ' DATA_IN [31:0] $end
-$var wire 1 % WRITE_ENABLE $end
 $var wire 32 ( DATA_OUT [31:0] $end
-$scope begin $ivl_for_loop0 $end
-$var integer 32 ) i [31:0] $end
-$upscope $end
+$var wire 1 % WRITE_ENABLE $end
 $upscope $end
 $upscope $end
 $enddefinitions $end
 #0
 $dumpvars
-b10000000000 )
-b110111 (
-b110111 '
-b1 &
-1%
-b110111 $
-1#
-b1 "
-b110111 !
+bx (
+bx '
+bx &
+x%
+bx $
+x#
+bx "
+bx !
 $end
 #200
-0#
+b110111 !
+b110111 (
+1#
+1%
+b110111 $
+b110111 '
+b1 "
+b1 &
 #400
-b1100011 !
-b1100011 (
+0#
+#600
 1#
 b1100011 $
 b1100011 '
+b1100011 !
+b1100011 (
 b10 "
 b10 &
-#600
-0#
 #800
-b110111 !
-b110111 (
+0#
+#1000
 1#
 b0 $
 b0 '
 0%
+b110111 !
+b110111 (
 b1 "
 b1 &
-#1000
-0#
 #1200
+0#
+#1400
+1#
 b1100011 !
 b1100011 (
-1#
 b10 "
 b10 &
-#1400
-0#
 #1600
+0#
+#1800

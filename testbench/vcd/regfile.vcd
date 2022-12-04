@@ -1,5 +1,5 @@
 $date
-	Tue Aug  3 20:45:28 2021
+	Sun Dec  4 14:45:25 2022
 $end
 $version
 	Icarus Verilog
@@ -23,36 +23,48 @@ $var wire 32 + R2_DATA [31:0] $end
 $var wire 5 , RD [4:0] $end
 $var wire 32 - RD_DATA [31:0] $end
 $var wire 1 ' WRITE_ENABLE $end
-$scope begin $ivl_for_loop0 $end
 $var integer 32 . i [31:0] $end
-$upscope $end
 $upscope $end
 $upscope $end
 $enddefinitions $end
 #0
 $dumpvars
 b100000 .
-b0 -
-b0 ,
-b0 +
-b0 *
-b0 )
-b0 (
-0'
-b0 &
-b0 %
-b0 $
-b0 #
-b0 "
-b0 !
+bx -
+bx ,
+bx +
+bx *
+bx )
+bx (
+x'
+bx &
+bx %
+bx $
+bx #
+bx "
+bx !
 $end
 #200
+0'
+b0 &
+b0 -
+b0 %
+b0 ,
+b0 !
+b0 +
+b0 $
+b0 *
+b0 "
+b0 )
+b0 #
+b0 (
+#400
 1'
 b101 &
 b101 -
 b1 %
 b1 ,
-#400
+#600
 b1010 &
 b1010 -
 b10 %
@@ -61,14 +73,35 @@ b101 "
 b101 )
 b1 #
 b1 (
-#600
+#800
 0'
-b0 &
-b0 -
-b0 %
-b0 ,
+b1100011 &
+b1100011 -
+b11 %
+b11 ,
 b1010 !
 b1010 +
 b10 $
 b10 *
-#800
+#1000
+b1 %
+b1 ,
+b0 "
+b0 )
+b11 #
+b11 (
+#1200
+1'
+b0 %
+b0 ,
+b101 !
+b101 +
+b1 $
+b1 *
+#1400
+0'
+b0 &
+b0 -
+b0 #
+b0 (
+#1600
